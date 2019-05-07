@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Draggable } from 'react-beautiful-dnd';
+
 const Container = styled.div`
   border: 1px solid lightgrey;
   border-radius: 2px;
@@ -10,6 +12,22 @@ const Container = styled.div`
 
 export default class Task extends React.Component {
   render() {
-    return <Container>{this.props.task.content}</Container>
+    return (
+      <Draggable draggableId={this.props.task.id} index={this.props.index}>
+        {
+          provided => (
+            <Container
+              {...provided.draggableProps}
+              {...provided.dragHandleProps}
+              ref={provided.innerRef}
+            >
+              <div>
+                {this.props.task.content}
+              </div>
+            </Container>
+          )
+        }
+      </Draggable>
+    )
   }
 }
