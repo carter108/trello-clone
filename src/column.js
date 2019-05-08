@@ -29,9 +29,7 @@ export default class Column extends React.Component {
               {...provided.droppableProps}
               isDraggingOver={snapshot.isDraggingOver}
             >
-              <div>
-                {this.props.tasks.map((task, index) => <Task key={task.id} task={task} index={index} />)}
-              </div>
+              {this.props.tasks.map((task, index) => <Task key={task.id} task={task} index={index} />)}
               {provided.placeholder}
             </TaskList>
           )}
